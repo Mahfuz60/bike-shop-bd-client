@@ -1,0 +1,31 @@
+ul li {
+  list-style-type: none;
+  color: rgb(165, 164, 164);
+}
+
+.fab {
+  color: rgb(153, 152, 152);
+  margin: 5px;
+  padding: 6px;
+  font-size: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.far {
+  color: rgb(153, 152, 152);
+}
+.contactHeader {
+  color: rgb(153, 152, 152);
+}
+.copyright-bg {
+  background-color: #2c3030;
+}
+
+.phone-num-color {
+  color: #bb1e06;
+}
+
+.footer-img {
+  width: 85px;
+  height: 60px;
+}
