@@ -23,6 +23,9 @@ const NavBar = () => {
             <Link className='navLink' to='/home'>
               DashBoard
             </Link>
+            <Link className='navLink' to='/login'>
+              Login
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
