@@ -4,22 +4,21 @@ import { useEffect, useState } from 'react';
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  updateProfile,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile,
 } from 'firebase/auth';
 
 //firebase initialization
 initializeFirebase();
-const auth = getAuth();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState('');
   const [admin, setAdmin] = useState(false);
-
+  const auth = getAuth();
   //register user
   const registerUser = (email, password, history, name) => {
     setLoading(true);
@@ -32,7 +31,7 @@ const useFirebase = () => {
         //Send Name to Firebase
         setUserName(name);
         // Save user to database
-        saveUser(email, name);
+        saveUser(email, name,"POST");
 
         setError('');
         history.replace('/');
@@ -61,7 +60,7 @@ const useFirebase = () => {
         const destination = location?.state?.from || '/';
         history.replace(destination);
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         setError('');
       })
       .catch((error) => {
@@ -99,10 +98,10 @@ const useFirebase = () => {
   };
 
   //save user to database
-  const saveUser = (email, displayName, method) => {
+  const saveUser = (email, displayName) => {
     const user = { email, displayName };
     fetch('https://localhost:5000/api/users', {
-      method: method,
+      method:"POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     }).then(() => {});
@@ -110,11 +109,11 @@ const useFirebase = () => {
 
   //make sure admin role user email
 
-  useEffect(() => {
-    fetch(`https://localhost:5000/api/users/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setAdmin(data.admin));
-  }, [user.email]);
+  // useEffect(() => {
+  //   fetch(`https://localhost:5000/api/users/${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAdmin(data.admin));
+  // }, [user.email]);
 
   return {
     user,

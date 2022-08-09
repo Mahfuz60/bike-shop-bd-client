@@ -19,3 +19,13 @@
 .navLink:hover {
   color: brown;
 }
+
+.logout-btn {
+  color: white;
+  background-color: #04aa6d;
+  border: 1px solid #04aa6d;
+  padding: 5px;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 5px;
+}

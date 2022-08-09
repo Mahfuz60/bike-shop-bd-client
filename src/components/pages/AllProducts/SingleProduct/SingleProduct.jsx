@@ -3,7 +3,7 @@ import { Button, Card, CardGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ product }) => {
-  const { model, brand, color, engine, mileage, details, photo, price, stock } = product;
+  const { model, brand, color, engine, mileage, details, photo, price, stock, _id } = product;
 
   return (
     <CardGroup className='py-3'>
@@ -37,7 +37,7 @@ const SingleProduct = ({ product }) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className='border bg-white border-0'>
-          <Link to='/'>
+          <Link to={`/orders/${_id}`}>
             <Button className='btn btn-danger w-100'>
               <i className='fas fa-shopping-cart me-2'></i>Order Now
             </Button>

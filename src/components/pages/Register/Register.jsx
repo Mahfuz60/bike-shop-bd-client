@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import './Register.css';
 
 const Register = () => {
-  const { registerUser, error, user } = useAuth();
+  const { registerUser, error } = useAuth();
   const {
     register,
     handleSubmit,
@@ -16,7 +16,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     if (data.password !== data.password2) {
       swal('Password Didnt match');
       return;
@@ -43,7 +42,7 @@ const Register = () => {
 
         <input
           className='form-control'
-          defaultValue=''
+          
           type='email'
           {...register('email', { required: true })}
           placeholder='user email'
@@ -51,21 +50,22 @@ const Register = () => {
 
         <input
           className='form-control'
-          defaultValue=''
+          
           type='password'
           {...register('password', { required: true })}
-          placeholder='password'
+          placeholder='user password'
         />
 
         <input
           className='form-control'
-          defaultValue=''
+         
           type='password'
           {...register('password2', { required: true })}
           placeholder='confirm password'
         />
 
         <input className='form-control btn btn-success' type='submit' value='Submit' />
+
         <span className='text-white'>{error}</span>
         <Link to='/login' className='text-decoration-none text-white fw-bold '>
           <h6>Already Have An Account ? Click Here</h6>{' '}
