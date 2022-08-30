@@ -1,19 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-
 import useAuth from '../../hooks/useAuth';
 import './Login.css';
 
 const Login = () => {
   const { loginUser, error } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  console.log(loginUser);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
     loginUser(data.email, data.password, location, navigate);
+    reset();
   };
   return (
     <div className='login-form'>

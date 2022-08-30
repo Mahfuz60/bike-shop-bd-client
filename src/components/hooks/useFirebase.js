@@ -20,7 +20,7 @@ const useFirebase = () => {
   const [admin, setAdmin] = useState(false);
   const auth = getAuth();
   //register user
-  const registerUser = (email, password, history, name) => {
+  const registerUser = (email, password, navigate, name) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
@@ -31,10 +31,10 @@ const useFirebase = () => {
         //Send Name to Firebase
         setUserName(name);
         // Save user to database
-        saveUser(email, name,"POST");
+        saveUser(email, name);
 
         setError('');
-        history.replace('/');
+        // navigate('/login');
       })
       .catch((error) => {
         setError(error.message);
@@ -53,14 +53,14 @@ const useFirebase = () => {
   };
   //LoginIn User
 
-  const loginUser = (email, password, location, history) => {
+  const loginUser = (email, password, location, navigate) => {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const destination = location?.state?.from || '/';
-        history.replace(destination);
+        navigate(destination);
         const user = result.user;
-        // console.log(user);
+        console.log(user);
         setError('');
       })
       .catch((error) => {
@@ -100,9 +100,9 @@ const useFirebase = () => {
   //save user to database
   const saveUser = (email, displayName) => {
     const user = { email, displayName };
-    fetch('https://localhost:5000/api/users', {
-      method:"POST",
-      headers: { 'Content-Type': 'application/json' },
+    fetch('http://localhost:5000/api/users', {
+      method: 'POST',
+      headers: { 'content-Type': 'application/json' },
       body: JSON.stringify(user),
     }).then(() => {});
   };

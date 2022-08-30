@@ -17,8 +17,10 @@ const Register = () => {
 
   const onSubmit = (data) => {
     if (data.password !== data.password2) {
-      swal('Password Didnt match');
+      swal('Password Didnt match!');
       return;
+    } else {
+      navigate('/login');
     }
     registerUser(data.email, data.password, data.name, navigate);
     reset();
@@ -42,7 +44,6 @@ const Register = () => {
 
         <input
           className='form-control'
-          
           type='email'
           {...register('email', { required: true })}
           placeholder='user email'
@@ -50,7 +51,6 @@ const Register = () => {
 
         <input
           className='form-control'
-          
           type='password'
           {...register('password', { required: true })}
           placeholder='user password'
@@ -58,7 +58,6 @@ const Register = () => {
 
         <input
           className='form-control'
-         
           type='password'
           {...register('password2', { required: true })}
           placeholder='confirm password'

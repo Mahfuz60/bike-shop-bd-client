@@ -7,7 +7,7 @@ import './NavBar.css';
 
 const NavBar = () => {
   const { user, logOut } = useFirebase();
-  console.log(user);
+
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
       <Container>
@@ -26,11 +26,11 @@ const NavBar = () => {
             <Link className='navLink' to='/home'>
               DashBoard
             </Link>
-            {user.email && (
+            {/* {user?.email && (
               <span style={{ fontWeight: 'bold', fontSize: '18px', color: 'orange' }}>
                 {user.displayName}
               </span>
-            )}
+            )} */}
             {user?.email ? (
               <button onClick={logOut} className='logout-btn px-2'>
                 LogOut<i className='fas fa-sign-out-alt mx-1'></i>
